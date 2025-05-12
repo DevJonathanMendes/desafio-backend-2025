@@ -1,42 +1,72 @@
-# Desafio Desenvolvedor Backend .NET
+# Bankount API
 
-## Definições
+API desenvolvida com .NET 8 e PostgreSQL para gerenciamento bancário de empresas por CNPJ.\
+*Projeto utilizando Docker para facilitar o desenvolvimento e deploy.*
 
-- Leia todo o conteúdo antes de iniciar e busque entender de fato o desafio proposto.
-- Faça um clone desse repositório para iniciar o projeto. Lembre-se de deixar o seu repositório privado e compartilhar com a conta do GitHub [MarcosVRSDev](https://github.com/MarcosVRSDev).
-- Utilizar o .Net na sua versão 5 ou superior.
+Infelizmente, tive alguns contratempos, mas compreendo que foi oferecido muito tempo para o dev.
 
-## Desafio
+**Não há absolutamente nada de "mais" neste projeto**, embora eu tenha experiência com .NET C#\
+é a minha primeira API e é baseada na documentação oficial.
 
-Criar uma API de conta bancária. Será somente possível cadastrar empresas por CNPJ.
+## Projeto Hospedado em VPS com Docker Compose
 
-## Orientações
+**Por tempo LIMITADO**!
 
-- Recursos:
-  - Conta bancária (CRUD).
-  - Saque.
-  - Depósito.
-  - Transações (Uma conta para outra).
-  - Retornar saldo e extrato.
+Para testar a API, basta acessar: <http://212.85.2.149:5120/>
 
-- Sugestão de tabelas:
-  - **Conta**: Campos: (id, nome, CNPJ, número da conta, agência e imagem do documento)
-  - **Transações**: Campos: (id, valor, tipo, conta_id)
+## 🚀 Tecnologias
 
-## Informações Adicionais
+- **Backend**:
+  - .NET 8: Framework principal para construção da API.
+  - Entity Framework: Para gerenciamento de banco de dados e migrações.
+  - PostgreSQL: Banco de dados relacional utilizado para persistência.
+- **Docker**: Containers para backend e banco de dados PostgreSQL.
 
-- Utilizar padrão REST, Postgres ou MySQL, e efetuar todas as validações necessárias.
-- Ao realizar a abertura da conta, o nome da empresa não vai poder ser informado na model, deve ser obtido através da API pelo CNPJ informado. [ReceitaWS API](https://developers.receitaws.com.br/#/operations/queryCNPJFree) (Atenção ao limite, tem um nível gratuito, tratar erros).
-- O documento da conta pode ser uma foto aleatória, fica a critério a forma de envio (Base64 ou MultipartFormData) salvar fisicamente em um diretório.
+## 📦 Pré-requisitos
 
-## O que será Avaliado
+- .NET 8.
+- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) (para rodar em produção)
+- Banco de dados **PostgreSQL** (utilizado no Docker Compose ou localmente)
 
-- Implementação dos recursos solicitados.
-- Validações e tratamento de erros.
-- Organização do código e estrutura do projeto.
-- Uso adequado das tecnologias mencionadas (REST, banco de dados, .Net 5+).
-- Clareza e qualidade do código.
-- Uso de boas práticas de desenvolvimento.
-- Documentação do projeto.
+## 🖥️ Como Rodar Localmente
 
-Qualquer dúvida pode ser enviada para o e-mail: marcos.rezende@inovamobil.com.br
+1. PostgreSQL rodando via docker, local ou servidor. Com as configurações em mãos.
+
+2. Acesse o arquivo [appsettings.json](./appsettings.json) e configure `DefaultConnection` com as suas credencias (ou do docker, tirando service do bankount):\
+`Host=localhost;Port=5621;Database=postgres;Username=Bankount;Password=Bankount`
+
+3. Execute os seguintes passos:
+
+```bash
+# Restaurar dependências
+dotnet restore
+
+# Executar a aplicação
+dotnet run
+```
+
+Acesse no navegador o endereço fornecido no terminal (geralmente `http://localhost:5120`).
+
+## 🐳 Como Rodar com Docker
+
+1. PostgreSQL rodando via docker, local ou servidor. Com as configurações em mãos.
+
+2. Acesse o arquivo [appsettings.json](./appsettings.json) e configure `DefaultConnection` com:\
+`Host=bankount_postgres;Port=5432;Database=postgres;Username=Bankount;Password=Bankount`
+
+3. Execute os seguintes passos:
+
+```bash
+docker compose up --build
+```
+
+O Docker Compose irá criar os seguintes containers:
+
+- PostgreSQL (porta 5432)
+- Backend API (porta 5120)
+
+Após a construção, a API estará disponível em `http://localhost:5120`.
+
+## ⚙️ Observações
+
+- As migrações são executadas automaticamente em [Program.cs](./Program.cs).

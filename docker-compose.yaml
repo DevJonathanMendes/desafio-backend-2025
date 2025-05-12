@@ -1,0 +1,31 @@
+services:
+  bankount_postgres:
+    image: postgres
+    container_name: bankount_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "Bankount"
+      POSTGRES_PASSWORD: "Bankount"
+      POSTGRES_DB: "postgres"
+      POSTGRES_HOST: "postgres"
+      POSTGRES_PORT: "5432"
+    ports:
+      - "5621:5432"
+    volumes:
+      - Bankount_pgdata:/var/lib/postgresql/data
+
+  bankount_api:
+    container_name: bankount_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5120:8080"
+    restart: always
+    environment:
+      - ConnectionStrings__Default=Host=bankount_postgres;Port=5432;Database=postgres;Username=Bankount;Password=Bankount
+    depends_on:
+      - bankount_postgres
+
+volumes:
+  Bankount_pgdata:
