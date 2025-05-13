@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "fc90c858-ac3b-4190-bc51-81a004c48e04",
+		"name": "Bankount",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36173036"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "documentImage",
+									"type": "file",
+									"src": "postman-cloud:///1ef81dd0-c6f2-41e0-b7af-ba4606f70845"
+								},
+								{
+									"key": "cnpj",
+									"value": "14.466.113/0001-91",
+									"type": "text"
+								},
+								{
+									"key": "agency",
+									"value": "4282",
+									"type": "text"
+								},
+								{
+									"key": "accountNumber",
+									"value": "35874733",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{5120}}/api/accounts"
+					},
+					"response": []
+				},
+				{
+					"name": "All Accounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{5120}}/api/accounts"
+					},
+					"response": []
+				},
+				{
+					"name": "By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{5120}}/api/accounts/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Accounts By Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "documentImage",
+									"type": "file",
+									"src": "postman-cloud:///1ef81dd0-c6f2-41e0-b7af-ba4606f70845",
+									"disabled": true
+								},
+								{
+									"key": "cnpj",
+									"value": "43.996.693/0001-27",
+									"type": "text"
+								},
+								{
+									"key": "agency",
+									"value": "2194",
+									"type": "text"
+								},
+								{
+									"key": "accountNumber",
+									"value": "21874254",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{5120}}/api/accounts/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Account By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{5120}}/api/accounts/34"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountId\": 1,\n\t\"type\": 1,\n\t\"value\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{5120}}/api/transactions/deposit"
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountId\": 1,\n\t\"TargetAccountId\": 2,\n\t\"type\": 1,\n\t\"value\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{5120}}/api/transactions/transfer"
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"accountId\": 1,\n\t\"value\": 1000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{5120}}/api/transactions/withdraw"
+					},
+					"response": []
+				},
+				{
+					"name": "Account Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{5120}}/api/transactions/accounts/1/balance"
+					},
+					"response": []
+				},
+				{
+					"name": "Account Extract",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{5120}}/api/transactions/accounts/1/extract"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
