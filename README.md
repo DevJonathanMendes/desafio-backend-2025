@@ -12,7 +12,13 @@ Infelizmente, tive alguns contratempos, mas compreendo que foi oferecido muito t
 
 **Por tempo LIMITADO**!
 
-Para testar a API, basta acessar: <http://212.85.2.149:5120/>
+Para testar a API, basta acessar: <http://212.85.2.149:5120/swagger/>
+
+## Collection Postman
+
+Se preferir testar manualmente a API com um cliente HTTP:
+
+- [Postman Collection](./postman/Bankount.postman_collection.json)
 
 ## 🚀 Tecnologias
 
